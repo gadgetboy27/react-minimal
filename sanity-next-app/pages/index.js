@@ -64,13 +64,30 @@ export default function Home() {
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
+          
+            <div className={styles.logo}>
+                <Image 
+                  src="/beach_floor.JPG"
+                  alt="13"
+                  width={240}
+                  height={131}
+                  priority
+                />
+          </div>
+          <div>
             <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
+              Docs <span>-&gt;</span> 
+          </h2>
+            </div>
+         
             <p className={inter.className}>
               Find in-depth information about Next.js features and&nbsp;API.
+              Find in-depth information about Next.js features and&nbsp;API.
+              Find in-depth information about Next.js features and&nbsp;API.
+              Find in-depth information about Next.js features and&nbsp;API.
+              Find in-depth information about Next.js features and&nbsp;API.
+
             </p>
           </a>
 
@@ -78,8 +95,16 @@ export default function Home() {
             href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
+              <div className={styles.logo}>
+                <Image 
+                  src="/beach_floor.JPG"
+                  alt="13"
+                  width={240}
+                  height={131}
+                  priority
+                />
+          </div>
             <h2 className={inter.className}>
               Learn <span>-&gt;</span>
             </h2>
@@ -92,8 +117,16 @@ export default function Home() {
             href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
+              <div className={styles.logo}>
+                <Image 
+                  src="/beach.JPG"
+                  alt="13"
+                  width={240}
+                  height={131}
+                  priority
+                />
+          </div>
             <h2 className={inter.className}>
               Templates <span>-&gt;</span>
             </h2>
@@ -106,8 +139,16 @@ export default function Home() {
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
+              <div className={styles.logo}>
+                <Image 
+                  src="/bench.JPG"
+                  alt="13"
+                  width={240}
+                  height={131}
+                  priority
+                />
+          </div>
             <h2 className={inter.className}>
               Deploy <span>-&gt;</span>
             </h2>
