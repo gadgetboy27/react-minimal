@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@sanity/block-content-to-react": "3.0.0",
-    "@sanity/imagetool": "2.35.3",
+    "@sanity/image-url": "2.35.3",
     "@next/font": "13.1.6",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",

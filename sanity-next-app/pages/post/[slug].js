@@ -1,12 +1,12 @@
-import imageUrlBuilder from '@sanity/imagetool';
+import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect  } from 'react';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Post.module.css';
 import BlockContent from '@sanity/block-content-to-react';
 
 
 export const Post = ({ title, body, image }) => {
     const [imageUrl, setimageUrl] = useState('');
-
+    console.log(Post)
     useEffect(() => {
         const imgBuilder = imageUrlBuilder({
             projectId: 'fcvw42nl',
@@ -20,7 +20,7 @@ export const Post = ({ title, body, image }) => {
         <div>
             <div className={styles.main}>
                 <h1>{title}</h1>
-                {imageUrl && <imag className={styles.mainImage} src={imageUrl}/>}
+                {imageUrl && <img className={styles.mainImage} src={imageUrl}/>}
 
                 <div className={styles.body}>
                     <BlockContent blocks={body} />

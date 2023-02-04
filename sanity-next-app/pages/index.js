@@ -2,10 +2,34 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import { useState, useEffect } from 'react'
+import  imageUrlBuilder from '@sanity/image-url'
 
 const inter = Inter({ subsets: ['latin'] })
+export default function Home({ posts }) {
 
-export default function Home() {
+  const [mappedPosts, setMappedPosts] = useState([]);
+
+  useEffect(() => {
+    if (posts.length) {
+      const imgBuilder = imageUrlBuilder({
+        projectId: 'fcvw42nl',
+        dataset: 'production',
+      });
+
+      setMappedPosts(
+        posts.map(p => {
+          return {
+            ...p,
+            mainImage: imgBuilder.image(p.mainImage),
+          }
+        })
+      );
+    }else {
+      setMappedPosts([]);
+    }
+  }, [posts]);
+
   return (
     <>
       <Head>
@@ -46,22 +70,19 @@ export default function Home() {
             alt="Next.js Logo"
             width={180}
             height={37}
-            priority
-          />
+            priority />
           <div className={styles.thirteen}>
             <Image
               src="/thirteen.svg"
               alt="13"
               width={40}
               height={31}
-              priority
-            />
+              priority />
           </div>
         </div>
 
         <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          <a href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer">
@@ -74,11 +95,11 @@ export default function Home() {
                   height={131}
                   priority
                 />
-          </div>
-          <div>
+            </div>
+            <div>
             <h2 className={inter.className}>
               Docs <span>-&gt;</span> 
-          </h2>
+            </h2>
             </div>
          
             <p className={inter.className}>
@@ -91,8 +112,7 @@ export default function Home() {
             </p>
           </a>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          <a href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer">
@@ -102,9 +122,8 @@ export default function Home() {
                   alt="13"
                   width={240}
                   height={131}
-                  priority
-                />
-          </div>
+                  priority />
+              </div>
             <h2 className={inter.className}>
               Learn <span>-&gt;</span>
             </h2>
@@ -113,8 +132,7 @@ export default function Home() {
             </p>
           </a>
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          <a href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer">
@@ -124,9 +142,8 @@ export default function Home() {
                   alt="13"
                   width={240}
                   height={131}
-                  priority
-                />
-          </div>
+                  priority />
+              </div>
             <h2 className={inter.className}>
               Templates <span>-&gt;</span>
             </h2>
@@ -135,8 +152,7 @@ export default function Home() {
             </p>
           </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          <div
             className={styles.card}
             target="_blank"
             rel="noopener noreferrer">
@@ -146,9 +162,8 @@ export default function Home() {
                   alt="13"
                   width={240}
                   height={131}
-                  priority
-                />
-          </div>
+                  priority />
+              </div>
             <h2 className={inter.className}>
               Deploy <span>-&gt;</span>
             </h2>
@@ -156,9 +171,52 @@ export default function Home() {
               Instantly deploy your Next.js site to a shareable URL
               with&nbsp;Vercel.
             </p>
-          </a>
+          </div>
+          </div>
+
+          <div className={styles.center}>
+          <h2 className={inter.className}>Recent Posts</h2>
+          </div>
+          <div className={styles.grid}>
+            {mappedPosts.length ? mappedPosts.map((p, index) => (
+              <div className={styles.card}>
+              <div key={index} className={styles.post}>
+                <img 
+                 src={p.mainImage}
+                 alt="13"
+                  width={240}
+                  height={131}
+                   />
+                <h2 className={inter.className}>{p.title}</h2>
+                <p className={inter.className}>Click card to see more details...</p>
+              </div>
+              </div>
+            )) : <>No Latest Pics</>}
         </div>
+        
       </main>
     </>
   )
 }
+
+export const getServerSideProps = async pageContext => {
+  const query = encodeURIComponent(`*[ _type == "post"]`);
+  const url = `https://fcvw42nl.api.sanity.io/v1/data/query/production?query=${query}`;
+
+  const result = await fetch(url)
+  .then(res => res.json());
+
+  if (!result.result || !result.result.length) {
+      return {
+          props: {
+            posts: [],
+          }
+      }
+  }else {
+      return {
+          props: {
+            posts: result.result,
+          }
+      }
+  }
+};
