@@ -5,9 +5,9 @@ import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import  imageUrlBuilder from '@sanity/image-url'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['vietnamese'] })
 export default function Home({ posts }) {
-
+  console.log(posts)
   const [mappedPosts, setMappedPosts] = useState([]);
 
   useEffect(() => {
@@ -45,155 +45,50 @@ export default function Home({ posts }) {
             <code className={styles.code}>pages/index.js</code>
           </p>
           <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+                <p className={styles.logo}>
+              DANIELLE DYER - Photographer</p>
+            
           </div>
         </div>
 
         <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority />
-          </div>
+          <h1 className={styles.h1}>dannii dyer</h1>
         </div>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer">
-          
-            <div className={styles.logo}>
-                <Image 
-                  src="/beach_floor.JPG"
-                  alt="13"
-                  width={240}
-                  height={131}
-                  priority
-                />
-            </div>
-            <div>
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span> 
-            </h2>
-            </div>
-         
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-              Find in-depth information about Next.js features and&nbsp;API.
-              Find in-depth information about Next.js features and&nbsp;API.
-              Find in-depth information about Next.js features and&nbsp;API.
-              Find in-depth information about Next.js features and&nbsp;API.
-
-            </p>
-          </a>
-
-          <a href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer">
-              <div className={styles.logo}>
-                <Image 
-                  src="/beach_floor.JPG"
-                  alt="13"
-                  width={240}
-                  height={131}
-                  priority />
-              </div>
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer">
-              <div className={styles.logo}>
-                <Image 
-                  src="/beach.JPG"
-                  alt="13"
-                  width={240}
-                  height={131}
-                  priority />
-              </div>
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <div
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer">
-              <div className={styles.logo}>
-                <Image 
-                  src="/bench.JPG"
-                  alt="13"
-                  width={240}
-                  height={131}
-                  priority />
-              </div>
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </div>
-          </div>
-
           <div className={styles.center}>
-          <h2 className={inter.className}>Recent Posts</h2>
-          </div>
-          <div className={styles.grid}>
-            {mappedPosts.length ? mappedPosts.map((p, index) => (
-              <div className={styles.card}>
-              <div key={index} className={styles.post}>
-                <img 
-                 src={p.mainImage}
-                 alt="13"
-                  width={240}
-                  height={131}
-                   />
-                <h2 className={inter.className}>{p.title}</h2>
-                <p className={inter.className}>Click card to see more details...</p>
-              </div>
-              </div>
-            )) : <>No Latest Pics</>}
+          <h1 className={inter.className}>Recent Posts...</h1>
         </div>
-        
+
+          
+        <div className={styles.container_all}>
+          {mappedPosts.length ? mappedPosts.map((p, index) => (
+            <div className={styles.container}>
+              <div key={index} className={styles.p}>
+                <img src={p.mainImage}
+                  alt="13"
+                  width={300}
+                  height={231} />
+                <span className={styles.title}>{p.title}</span>
+                <span className={styles.text}>{p.body.text}</span>
+                </div>
+                </div>
+                )) : <>No Posts Yet</>}
+            </div>
+
+            {/* <div className={styles.grid}>
+                {mappedPosts.length ? mappedPosts.map((p, index) => (
+                  <div className={styles.card}>
+                    <div key={index} className={styles.p}>
+                      <img
+                        src={p.mainImage}
+                        alt="13"
+                        width={300}
+                        height={231} />
+                      <h2 className={inter.className}>{p.title}</h2>
+                      <p className={inter.className}>{p.body.text}Click card for more details...</p>
+                    </div>
+                  </div>
+                )) : <>No Posts Yet</>}
+          </div> */}
       </main>
     </>
   )
@@ -202,7 +97,7 @@ export default function Home({ posts }) {
 export const getServerSideProps = async pageContext => {
   const query = encodeURIComponent(`*[ _type == "post"]`);
   const url = `https://fcvw42nl.api.sanity.io/v1/data/query/production?query=${query}`;
-
+  
   const result = await fetch(url)
   .then(res => res.json());
 
