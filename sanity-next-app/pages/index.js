@@ -38,57 +38,38 @@ export default function Home({ posts }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.js</code>
-          </p>
+      <main className={styles.body}>
+        <div className={styles.title}>
+         
           <div>
-                <p className={styles.logo}>
+                <p className={styles.text}>
               DANIELLE DYER - Photographer</p>
             
           </div>
         </div>
 
         <div className={styles.center}>
-          <h1 className={styles.h1}>dannii dyer</h1>
-        </div>
+            <h1 className={styles.title}>dannii dyer</h1>
+          </div>
           <div className={styles.center}>
-          <h1 className={inter.className}>Recent Posts...</h1>
+            <h1 className={inter.className}>Recent Posts...</h1>
         </div>
 
           
-        <div className={styles.container_all}>
-          {mappedPosts.length ? mappedPosts.map((p, index) => (
-            <div className={styles.container}>
-              <div key={index} className={styles.p}>
-                <img src={p.mainImage}
-                  alt="13"
-                  width={300}
-                  height={231} />
-                <span className={styles.title}>{p.title}</span>
-                <span className={styles.text}>{p.body.text}</span>
+          <div className={styles.container_all}>
+            {mappedPosts.length ? mappedPosts.map((p, index) => (
+              <div className={styles.container}>
+                <div key={index} className={styles.img}>
+                  <img src={p.mainImage}
+                    alt="13"
+                    width={420}
+                    height={340} />
+                  <span className={styles.title}>{p.title}</span>
+                  <span className={styles.text}>{p.body.text}</span>
                 </div>
-                </div>
-                )) : <>No Posts Yet</>}
-            </div>
-
-            {/* <div className={styles.grid}>
-                {mappedPosts.length ? mappedPosts.map((p, index) => (
-                  <div className={styles.card}>
-                    <div key={index} className={styles.p}>
-                      <img
-                        src={p.mainImage}
-                        alt="13"
-                        width={300}
-                        height={231} />
-                      <h2 className={inter.className}>{p.title}</h2>
-                      <p className={inter.className}>{p.body.text}Click card for more details...</p>
-                    </div>
-                  </div>
-                )) : <>No Posts Yet</>}
-          </div> */}
+               </div>
+            )) : <>No Posts Yet</>}
+          </div>
       </main>
     </>
   )
