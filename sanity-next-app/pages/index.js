@@ -1,13 +1,14 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import  imageUrlBuilder from '@sanity/image-url'
+import { Toolbar } from '../components/toolbar'
+import { useRouter } from 'next/router'
 
-const inter = Inter({ subsets: ['vietnamese'] })
+
 export default function Home({ posts }) {
-  console.log(posts)
+  const router = useRouter();
+  console.log([posts])
   const [mappedPosts, setMappedPosts] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,6 @@ export default function Home({ posts }) {
         projectId: 'fcvw42nl',
         dataset: 'production',
       });
-
       setMappedPosts(
         posts.map(p => {
           return {
@@ -38,36 +38,28 @@ export default function Home({ posts }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.body}>
-        <div className={styles.title}>
-         
-          <div>
-                <p className={styles.text}>
-              DANIELLE DYER - Photographer</p>
-            
-          </div>
-        </div>
-
+      <Toolbar />
+      <main className={styles.main}>
         <div className={styles.center}>
             <h1 className={styles.title}>dannii dyer</h1>
-          </div>
-          <div className={styles.center}>
-            <h1 className={inter.className}>Recent Posts...</h1>
         </div>
-
-          
+        <div className={styles.center}>
+            <h1 className={styles.title}>Recent Posts...</h1>
+        </div>
           <div className={styles.container_all}>
             {mappedPosts.length ? mappedPosts.map((p, index) => (
               <div className={styles.container}>
+              <div onClick={() => router.push(`/post/${p.slug.current}`)}>
                 <div key={index} className={styles.img}>
                   <img src={p.mainImage}
-                    alt="13"
+                    alt=""
                     width={420}
                     height={340} />
                   <span className={styles.title}>{p.title}</span>
-                  <span className={styles.text}>{p.body.text}</span>
+                  <span className={styles.feed}>{}</span>
                 </div>
                </div>
+              </div>
             )) : <>No Posts Yet</>}
           </div>
       </main>

@@ -73,7 +73,7 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
 
 * {
   box-sizing: border-box;
@@ -81,15 +81,14 @@
   margin: 0;
 } 
 
-body, html{
+/* body, html{
   margin: 0;
   background: #2b2927;
   
-}
-h1{
+} */
+h1 {
   text-align: center;
-  color:white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sacramento', sans-serif;
 }
 
 body {
@@ -107,6 +106,18 @@ a {
   text-decoration: none;
 }
 
+ul {
+  position:relative;
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+li {
+  padding:8px;
+  float: left;
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
